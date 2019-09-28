@@ -1,0 +1,54 @@
+{% extends 'shop/_layouts/main' %}
+
+{% block sitemeta %}
+<title>{{ product.title }} | Mavenshake</title>
+<meta name="description" content="{{ "The example templates for Craft Commerce"|t }}">
+{% endblock %}
+
+{% block main %}
+        <div class="mt-8">
+            <a href="{{ url('shop/products') }}">&larr; All products</a>
+        </div>
+
+        <div class="flex -mx-6 mt-8 product-details">
+            <div class="w-1/2 mx-6 p-8">
+                {% set rel = product.productPhoto.one() %}
+                {% if rel %}
+                <img src="/images/products/{{ rel.filename }}" alt="">
+                {% endif %}
+            </div>
+            <div class="w-1/2 mx-6 p-8">
+                <h1>{{ product.title }}</h1>
+
+                <form method="POST">
+                    {{ product.intro }}
+
+                    <input type="hidden" name="action" value="commerce/cart/update-cart">
+                    {{ redirectInput('shop/cart') }}
+                    
+                    {{ csrfInput() }}
+                    <div class="field">
+                        <h5>Supply amount</h5>
+                        <select name="purchasableId">
+                            {% for purchasable in product.variants %}
+                                <option {% if purchasable.stock <= 0 and purchasable.hasUnlimitedStock == false %}disabled {% endif %}
+                                        value="{{ purchasable.id }}">
+                                        {# {{ purchasable.sku }} #} {{ purchasable.title }} {{ purchasable.salePrice|commerceCurrency(cart.currency) }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="field">
+                        <h5>Quantity</h5>
+                        {# <input type="hidden" name="qty" value="1"> #}
+                        <input type="number" name="qty" value="1">
+                    </div>
+                    <div class="buttons">
+                        <input type="submit" value="{{ "Add to cart"|t }}" class="button"/>
+                    </div>
+
+                    {{ product.description }}
+                </form>
+            </div>
+        </div>
+{% endblock %}
