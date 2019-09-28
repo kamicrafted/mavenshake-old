@@ -1,26 +1,33 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var autoprefixer = require('gulp-autoprefixer');
+const { src, dest, watch, series, parallel } = require('gulp');
+const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+var replace = require('gulp-replace');
 
-var input = './html/scss/**/*.scss';
-var output = './html/styles/css';
+const files = { 
+  scssPath: 'html/scss/**/*.scss'
+  // jsPath: 'app/js/**/*.js'
+}
 
-var sassOptions = {
-  errLogToConsole: true,
-  outputStyle: 'expanded'
-};
+function scssTask(){    
+  return src(files.scssPath)
+      .pipe(sourcemaps.init())
+      .pipe(sass())
+      .pipe(postcss([ autoprefixer(), cssnano() ]))
+      .pipe(sourcemaps.write('.'))
+      .pipe(dest('./html/styles/')
+  );
+}
 
-var autoprefixerOptions = {
-  browsers: ['last 2 versions', '> 5%', 'Firefox ESR']
-};
+function watchTask(){
+  watch(
+      [files.scssPath],
+      parallel(scssTask)
+  );
+}
 
-gulp.task('sass', function () {
-  return gulp
-    .src(input)
-    .pipe(sourcemaps.init())
-    .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(sourcemaps.write())
-    .pipe(autoprefixer(autoprefixerOptions))
-    .pipe(gulp.dest(output));
-});
+exports.default = series(
+  parallel(scssTask), 
+  watchTask);
