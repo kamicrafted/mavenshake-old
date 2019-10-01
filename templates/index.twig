@@ -1,31 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="styles/app.css" />
-</head>
-<body>
-  <nav>
-    {{ craft.olivemenus.getMenuHTML('mainNavigation') }}
-  </nav>
+{% extends "_layouts/base" %}
+{% block body_class %}view-home{% endblock %}
 
-  <h2>This is the marketing homepage</h2>
+{% block sitemeta %}
+<title>{{ "MavenShake - No-nonsense Nutrition"|t }}</title>
+<meta name="description" content="{{ "The example templates for Craft Commerce"|t }}">
+{% endblock %}
 
-  <a href="/shop/">View Shop home</a>
-  <br>
+{% block main %}
+  <div class="message-main">
+    <h1 class="headline">Shake up your routine</h1>
+    <p class="subhead">
+      An all-natural, all-in-one superfood supplement that won’t slow you down from living your life to the fullest.
+    </p>
+
+    <a href="/shop" class="button button--primary">Shop now</a>
+
+    <p>
+      or <a href="/ingredients">Learn about our ingredients</a>
+    </p>
+  </div>
+
+  <div class="product-info">
+    <img src="images/homepage-product.png" alt="">
+  </div>
+
   <a href="/shop/products">View Products page</a>
-  <br>
-  <a href="/shop/checkout/register-signin">Sign in or Register</a>
-
-  {# ------------------------------------------------
-  Included with craft starter templates
-  ------------------------------------------------ #}
-  {#
-
-  #}
-
-</body>
-</html>
+{% endblock %}

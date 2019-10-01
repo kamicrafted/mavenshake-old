@@ -1,3 +1,164 @@
+/* ==============================================
+VARIABLES
+============================================== */
+$color-bg: #e8e0dd;
+$color-link: #2e83e1;
+$color-text: #16110e;
+$color-primary: #0fd284;
+
+$base-font-size: 16px;
+$font-headline: fatfrank, sans-serif;
+$font-body: ff-tisa-sans-web-pro, sans-serif;
+/* ============================================== */
+
+/* ==============================================
+GLOBAL
+============================================== */
 body {
-  background: white;
+  background-color: $color-bg;
+  background-image: radial-gradient(
+    circle at top center,
+    rgba(white, 0.5),
+    $color-bg
+  );
+  font-family: $font-body;
+  font-size: $base-font-size;
+}
+
+a {
+  color: $color-link;
+}
+
+.not-link {
+  opacity: 0.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-headline;
+}
+/* ============================================== */
+
+/* ==============================================
+SITE HEADER
+============================================== */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+
+  &__left {
+    flex: 0 1 420px;
+
+    a {
+      color: $color-text;
+    }
+  }
+
+  &__logo {
+    flex: 0 0 auto;
+  }
+
+  &__right {
+    flex: 0 1 420px;
+    clear: both;
+
+    > nav {
+      float: right;
+    }
+
+    .list-reset {
+      margin-left: auto;
+      text-transform: uppercase;
+      font-family: $font-headline;
+    }
+
+    a {
+      color: $color-text;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+#main-menu {
+  display: flex;
+
+  > ul {
+    display: flex;
+
+    > li {
+      margin-left: 10px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .menu-item {
+    text-transform: uppercase;
+    font-family: $font-headline;
+
+    a {
+      color: $color-text;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+/* ============================================== */
+
+/* ==============================================
+HOMEPAGE
+============================================== */
+.view-home {
+  .message-main {
+    text-align: center;
+
+    .headline {
+      margin: 0;
+      font-size: 64px;
+      text-transform: uppercase;
+    }
+
+    .subhead {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 22px;
+      line-height: 1.4;
+    }
+
+    .button {
+      margin: 20px 0;
+    }
+  }
+}
+
+/* ==============================================
+BUTTONS
+============================================== */
+.button {
+  display: inline-block;
+  padding: 8px 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: $font-headline;
+  letter-spacing: 1px;
+
+  &--primary {
+    color: white;
+    background-color: $color-primary;
+  }
+}
+
+.badge {
+  background: $color-link;
+  font-weight: bold;
+  font-family: helvetica, helvetica neue, arial, sans-serif;
 }

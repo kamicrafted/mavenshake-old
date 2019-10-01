@@ -4,6 +4,8 @@
 
 {% extends 'shop/_layouts/checkout' %}
 
+{% block body_class %}view-checkout-account{% endblock %}
+
 {% block content %}
 
     {% if not cart.email %}

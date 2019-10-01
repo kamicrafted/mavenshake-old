@@ -1,15 +1,17 @@
 {
   "require": {
-    "aelvan/imager": "v2.1.10",
+    "aelvan/imager": "v2.3.0",
     "chasegiunta/scss": "1.0.0",
-    "craftcms/cms": "^3.0.0",
-    "craftcms/commerce": "2.1.11",
-    "craftcms/commerce-stripe": "2.1.0",
-    "fostercommerce/shipstationconnect": "1.1.0",
+    "craftcms/cms": "3.3.6",
+    "craftcms/commerce": "2.1.13",
+    "craftcms/commerce-stripe": "^2.1",
+    "fostercommerce/shipstationconnect": "1.2.2",
     "la-haute-societe/craft-google-tag-manager": "1.1.0",
     "nystudio107/craft-instantanalytics": "1.1.0",
     "olivestudio/craft-olivemenus": "1.0.9",
-    "topshelfcraft/wordsmith": "3.0.5",
+    "topshelfcraft/wordsmith": "3.1.1",
+    "verbb/cp-nav": "2.0.9",
+    "verbb/expanded-singles": "1.0.7",
     "vlucas/phpdotenv": "^3.4.0"
   },
   "autoload": {

@@ -1,0 +1,35 @@
+/* ==============================================
+VARIABLES
+============================================== */
+$color-bg: #f0f0f0;
+$color-link: #2E83E1;
+$color-text: #16110E;
+$color-primary: #0FD284;
+
+$base-font-size: 16px;
+$font-headline: fatfrank, sans-serif;
+$font-body: ff-tisa-sans-web-pro, sans-serif;
+/* ============================================== */
+
+/* ==============================================
+GLOBAL
+============================================== */
+body {
+  background-color: $color-bg;
+  background-image: radial-gradient(
+    circle at top center,
+    rgba(white, .5),
+    $color-bg
+  );
+  font-family: $font-body;
+  font-size: $base-font-size;
+}
+
+a {
+  color: $color-link;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-headline;
+}
+/* ============================================== */
