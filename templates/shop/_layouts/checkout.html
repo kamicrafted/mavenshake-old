@@ -1,6 +1,11 @@
 {% set showNav = false %}
 
-{% extends 'shop/_layouts/main' %}
+{% extends "_layouts/base" %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="/styles/checkout.css" />
+{% endblock %}
 
 {% set extraHeader %}
     {% include 'shop/_includes/meter' %}

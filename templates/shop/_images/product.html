@@ -1,0 +1,5 @@
+<!-- Product Image -->
+{% set rel = entry.productPhoto.one() %}
+{% if rel %}
+    <p><a href="{{ rel.url }}">{{ rel.filename }}</a></p>
+{% endif %}
