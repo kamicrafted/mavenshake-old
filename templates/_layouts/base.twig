@@ -115,6 +115,9 @@
         </div>
     {% endblock %}
 
+    {#
+      Show debug info for users that are in superUser group
+    #}
     {% if currentUser.isInGroup('superUser') is defined %}
       {% include '/_includes/debug' %}
     {% endif %}
