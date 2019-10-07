@@ -7,6 +7,30 @@
 {% endblock %}
 
 {% block main %}
+
+{# Testing Subscriptions #}
+{% set plans = craft.commerce.getPlans().getAllPlans() %}
+
+<form method="POST">
+  <input type="hidden" name="action" value="commerce/subscriptions/subscribe">
+
+  {{ csrfInput() }}
+
+  <div>
+    <select name="planUid" id="planSelect">
+      {% for plan in plans %}
+        <option value="{{ plan.uid|hash }}">{{ plan.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  {# Display only if the user does not have a payment soure saved #}
+  {# {{ plan.getGateway().getPaymentFormHtml({})|raw }} #}
+
+  <button type="submit">{{ "Subscribe"|t('commerce') }}</button>
+</form>
+
+{# END Testing Subscriptions #}
         <div class="mt-8">
             <a href="{{ url('shop/products') }}">&larr; All products</a>
         </div>
