@@ -6,23 +6,66 @@
 <meta name="description" content="{{ "The example templates for Craft Commerce"|t }}">
 {% endblock %}
 
-{% block main %}
+{% block body %}
+<div id="main" class="container mx-auto p-6">
   <div class="message-main">
-    <h1 class="headline">Shake up your routine</h1>
+    <h1 class="headline">{{ entry.headline }}</h1>
     <p class="subhead">
-      An all-natural, all-in-one superfood supplement that won’t slow you down from living your life to the fullest.
+      {{ entry.subhead }}
     </p>
 
-    <a href="/shop" class="button button--primary">Shop now</a>
+    <a href="/shop/products" class="button button--primary">{{ entry.cta }}</a>
 
     <p>
-      or <a href="/ingredients">Learn about our ingredients</a>
+      {{ entry.richtext }}
     </p>
   </div>
 
   <div class="product-info">
-    <img src="images/homepage-product.png" alt="">
+    {% for asset in entry.keyart %}
+      <img src="{{ asset.getUrl('keyart') }}" alt="{{ asset.title }}">                               
+    {% endfor %}
+    {# <img src="images/homepage-product.png" alt=""> #}
   </div>
+</div>
 
-  <a href="/shop/products">View Products page</a>
+<div class="section section--badges">
+  <h4 class="hashtag">#MAVENSHAKE</h4>
+
+  <div class="badges">
+    <img class="badges__item" src="/images/icons/badge-vegan.svg" alt="">
+    <img class="badges__item" src="/images/icons/badge-gluten.svg" alt="">
+    <img class="badges__item" src="/images/icons/badge-dairy.svg" alt="">
+    <img class="badges__item" src="/images/icons/badge-sugar.svg" alt="">
+  </div>
+</div>
+
+{% for block in entry.highlights.all() %}
+  {% if block.type == "contentSection" %}
+    <div class="section section--{{ block.layout }}" style="background-color: {{ block.bgColor }}">
+      <div class="container">
+        <div class="section__message">
+          <h2 class="section__title">{{ block.headline }}</h2>
+          <p class="section__description">{{ block.subhead }}</p>
+          <p class="section__link">{{ block.sectionLink }}</p>
+        </div>
+        {% for asset in block.sectionImage %}
+          <img class="section__image" src="{{ asset.getUrl('w600') }}" alt="{{ asset.title }}">                               
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+{% endblock %}
+
+{% block vue %}
+{# {% js %}
+  new Vue({
+    el: '#main',
+    delimiters: ['${', '}'],
+    data: {
+      test: "sdfsdfsd"
+    }
+  })
+{% endjs %} #}
 {% endblock %}

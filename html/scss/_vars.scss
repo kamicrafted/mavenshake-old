@@ -1,0 +1,26 @@
+/* ==============================================
+VARIABLES
+============================================== */
+$site-max-width: 1200px;
+
+$color-bg: #e8e0dd;
+$color-link: #2e83e1;
+$color-text: #16110e;
+$color-text-light: $color-bg;
+$color-primary: #0fd284;
+$color-footer: $color-text;
+
+$base-font-size: 16px;
+$font-headline: fatfrank, sans-serif;
+$font-body: ff-tisa-sans-web-pro, sans-serif;
+
+
+/* ==============================================
+MEDIA QUERIES
+============================================== */
+$mq-lg: 1100px;
+$mq-md: 768px;
+$mq-sm: 540px;
+
+$gutter-tablet: 30px;
+$gutter-mobile: 20px;

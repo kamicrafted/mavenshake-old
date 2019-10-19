@@ -1,0 +1,155 @@
+/* ==============================================
+FOOTER
+============================================== */
+.footer {
+  background-color: $color-footer;
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px; 
+
+    .backtotop {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__middle {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+
+  &__nav {
+    .menu {
+      > ul {
+        display: flex;
+      }
+    }
+
+    .menu-item {
+      a {
+        font-size: 16px;
+        color: #E8E0DD;
+      }
+    }
+
+    &--main {
+      font-family: $font-headline;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+
+      a {
+        @extend .antialias;
+        margin-right: 20px;
+      }
+    }
+
+    &--legal {
+      font-family: $font-body;
+
+      a {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  &__signoff {
+    color: rgba(#E8E0DD, .5);
+  }
+
+  &__social {
+    > a {
+      margin-left: 10px;
+    }
+  }
+  
+  .backtotop {
+    @extend .antialias;
+    display: flex;
+    align-items: center; 
+    font-family: $font-headline;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    color: rgba(#E8E0DD, .5);
+
+    .feather {
+      width: 16px;;
+    }
+  }
+}
+
+
+/* ==============================================
+RESPONSIVE - TABLET
+============================================== */
+@media (min-width: $mq-md) and (max-width: $mq-lg) {
+  .footer {
+    padding: 0 $gutter-tablet;
+  }
+}
+
+
+/* ==============================================
+RESPONSIVE - MOBILE
+============================================== */
+@media (max-width: $mq-md) {
+  .footer {
+    padding: 0 $gutter-mobile;
+
+    &__middle {
+      flex-direction: column;
+    }
+
+    &__bottom {
+      flex-direction: column;
+      margin-top: 0;
+    }
+
+    &__nav--main {
+      margin: 0 auto 60px;
+
+      .menu-item {
+        margin: 0;
+      }
+    }
+
+    &__nav--legal {
+      margin: 0 auto;
+
+      .menu-item {
+        margin: 0 15px;
+      }
+    }
+
+    &__signoff {
+      font-size: 14px; 
+      text-align: center;
+      margin: 10px 0 30px 0;
+    }
+
+    &__social {
+      margin: 0 auto;
+
+      > a {
+        margin: 0 20px;
+      }
+    }
+
+    .logo {
+      margin: 0 auto;
+    }
+
+    .backtotop {
+      display: none;
+    }
+  }
+}

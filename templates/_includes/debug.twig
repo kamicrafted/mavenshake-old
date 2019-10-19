@@ -1,6 +1,8 @@
-<div class="debug">
+<div id="debug" class="debug" :class="{show: showDebug}">
   <div class="container">
-    <h3>Commerce Cart Debug Info</h3>
+    <div class="debug__button" @click="togglePanel">
+      Commerce Cart Debug Info
+    </div>
     <div class="debug__info">
       <ul class="debug-group">
         <li class="debug-group__title">User info</li>
@@ -61,3 +63,19 @@
     </div>
   </div>
 </div>
+
+{% js %}
+  new Vue({
+    el: '#debug',
+    delimiters: ['${', '}'],
+    data: {
+      showDebug: false
+    },
+    methods: {
+      togglePanel () {
+        this.showDebug = !this.showDebug;
+        console.log(this.showDebug);
+      }
+    }
+  })
+{% endjs %}

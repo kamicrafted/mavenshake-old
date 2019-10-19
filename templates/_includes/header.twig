@@ -1,0 +1,47 @@
+<header id="header" class="site-header">
+  {% if showNav %}
+    <div class="menu-button" @click="toggleMenu">
+      <i class="icon icon-menu" data-feather="menu"></i>
+    </div>
+
+    <div class="site-header__left" :class="{show: showMenu}">
+      <div class="close-button" @click="toggleMenu">
+        <i class="icon icon-close" data-feather="x-circle"></i>
+      </div>
+      
+      {{ craft.olivemenus.getMenuHTML('mainNavigation',{ 'menu-id': 'main-menu' }) }}
+    </div>
+  {% endif %}
+
+  <div class="site-header__logo" :class="{show: showMenu}">
+    <a href="{{ url('/') }}"><img src="/images/logo-mavenshake.svg" alt="MavenShake Logo"></a>
+    {# <a href="{{ url('shop') }}" class="brand mb-6 md:mb-0 block">{%- include "shop/_images/logo" with {'class': 'logo'} -%}</a> #}
+  </div>
+
+  <div class="site-header__right">
+    {% if showNav %}
+      {# {% include "shop/_includes/nav" %} #}
+      {% include '/_includes/nav' %}
+    {% endif %}
+
+    {% if extraHeader is defined %}
+      {{ extraHeader }}
+    {% endif %}
+  </div>
+</header>
+
+{% js %}
+  new Vue({
+    el: '#header',
+    delimiters: ['${', '}'],
+    data: {
+      showMenu: false
+    },
+    methods: {
+      toggleMenu () {
+        this.showMenu = !this.showMenu;
+        console.log(this.showMenu);
+      }
+    }
+  })
+{% endjs %}

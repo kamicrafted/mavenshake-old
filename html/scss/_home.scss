@@ -1,0 +1,221 @@
+/* ==============================================
+HOMEPAGE
+============================================== */
+.view-home {
+  .message-main {
+    text-align: center;
+
+    .headline {
+      margin: 0 0 20px;
+      font-size: 64px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .subhead {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 22px;
+      line-height: 1.4;
+    }
+
+    .button {
+      margin: 20px 0;
+    }
+  }
+}
+
+
+/* ==============================================
+BADGES SECTION
+============================================== */
+.section {
+  &--badges {
+    position: relative;
+    display: flex;
+    min-height: 250px;
+  }
+
+  .hashtag {
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 0;
+    margin: 0;
+    font-size: 14.3vw;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: .1;
+  }
+
+  .badges {
+    display: flex;
+    margin: 0 auto;
+
+    &__item {
+      flex: 0 1 auto;
+      width: 25%;
+      max-width: 250px;
+      padding: 0 10px;
+    }
+  }
+}
+
+
+/* ==============================================
+MATRIX SECTION
+============================================== */
+.section {
+  padding: 50px 0;
+
+  > .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__message {
+    flex: 1 1 auto;
+    margin: 0 50px 0 0;
+    max-width: 520px;
+  }
+
+  &__title  {
+    font-size: 64px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  &__description  {
+    font-size: 18px;
+  }
+
+  &__link  {
+    
+  }
+
+  &__image {
+    max-width: 500px;
+  }
+
+  &--right {
+    .container {
+      flex-direction: row-reverse;
+    }
+
+    .section__message {
+      margin: 0 0 0 50px;
+    }
+
+    .section__image {
+      margin-right: auto;
+    }
+  }
+}
+
+
+/* ==============================================
+RESPONSIVE - TABLET
+============================================== */
+@media (min-width: $mq-md) and (max-width: $mq-lg) {
+  body {
+    // background-color: red;
+  }
+
+  .section {
+    padding: 50px;
+
+    &__message {
+      width: 40%;
+      padding: 0;
+    }
+
+    &__image {
+      width: 60%;
+    }
+
+    &__title {
+      font-size: 42px;
+    }
+  }
+}
+
+/* ==============================================
+RESPONSIVE - MOBILE
+============================================== */
+@media (max-width: $mq-md) {
+  body {
+    // background-color: blue;
+  }
+
+  .view-home {
+    > .container {
+      padding: 0 0 50px;
+    }
+
+    .message-main {  
+      .headline {
+        padding-top: 0;
+        font-size: 42px;
+      }
+
+      .subhead {
+        padding: 0 $gutter-mobile;
+        margin: 0 auto;
+        font-size: 18px;
+      }
+
+      .button {
+        margin: 20px 0 0;
+      }
+    }
+
+    // .product-info > img {
+    //   transform: scale(1.3);
+    //   margin-top: 50px;
+    // }
+  }
+
+  .section {
+    padding: 50px $gutter-mobile;
+
+    > .container {
+      flex-direction: column;
+      padding: 0;
+    }
+
+    &__message {
+      width: 100%;
+      text-align: center;
+    }
+
+    &__image {
+      display: block;
+      width: 100%;
+    }
+
+    &__title {
+      margin-top: 0;
+      font-size: 42px;
+    }
+
+    &--left, &--right {
+      .section__image {
+        margin: 0 auto;
+      }
+      
+      .section__message {
+        margin: 0 auto;
+      }
+    }
+
+    &--badges {
+      min-height: 130px;
+      padding: 0 20px 50px;
+      
+      .hashtag {
+        top: -15px;
+        padding: 0;
+      }
+    }
+  }
+}
