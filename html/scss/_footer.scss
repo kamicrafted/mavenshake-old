@@ -93,7 +93,7 @@ RESPONSIVE - TABLET
 ============================================== */
 @media (min-width: $mq-md) and (max-width: $mq-lg) {
   .footer {
-    padding: 0 $gutter-tablet;
+    padding: 50px $gutter-tablet;
   }
 }
 
@@ -103,7 +103,7 @@ RESPONSIVE - MOBILE
 ============================================== */
 @media (max-width: $mq-md) {
   .footer {
-    padding: 0 $gutter-mobile;
+    padding: 50px $gutter-mobile;
 
     &__middle {
       flex-direction: column;

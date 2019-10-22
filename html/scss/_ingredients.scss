@@ -1,0 +1,63 @@
+/* ==============================================
+HOMEPAGE
+============================================== */
+.view-ingredients {
+  background-image: none;  
+
+  .ingredient {
+    display: flex;
+    align-items: center;
+
+    &.right {
+      flex-direction: row-reverse;
+
+      .ingredient__image {
+        margin: 0 0 0 30px;
+      }
+    }
+
+    &__info {
+      
+    }
+
+    &__name {
+      margin-top: 0;
+    }
+
+    &__description {
+
+    }
+
+    &__image {
+      flex: 1 0 auto;
+      width: 45%;
+      height: 45%;
+      margin: 0 30px 0 0;
+    }
+  }
+
+  .container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+  
+
+/* ==============================================
+RESPONSIVE - MOBILE
+============================================== */
+@media (max-width: $mq-lg) {
+  .ingredient {
+    margin: 50px 0;
+    padding: 40px;
+    border-radius: 6px;
+    border-top: 1px solid rgba(white, .75);
+    box-shadow: 0 20px 20px -5px rgba(black, .15);
+
+    flex-direction: column !important;
+
+    &__image {
+      margin: 0 !important;
+    }
+  }
+}

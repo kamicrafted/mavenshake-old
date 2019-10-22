@@ -29,15 +29,63 @@ h6 {
   font-family: $font-headline;
 }
 
+.antialias {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* ==============================================
+CONTAINER
+============================================== */
 .container {
   max-width: $site-max-width;
   margin: 0 auto;
   padding: 50px 0;
 }
 
-.antialias {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@media (max-width: $mq-lg) {
+  body > .container {
+    padding: 50px 25px;
+  }
+}
+
+@media (min-width: $mq-lg) {
+  body > .container {
+    padding: 50px 50px;
+  }
 }
 
 /* ============================================== */
+
+
+/* ==============================================
+PAGE MAIN MESSAGE
+============================================== */
+.message-main {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+
+  .headline {
+    margin: 0 0 20px;
+    font-size: 64px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .subhead {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .button {
+    margin: 20px 0;
+  }
+}
+
+@media (max-width: $mq-md) {
+  
+}

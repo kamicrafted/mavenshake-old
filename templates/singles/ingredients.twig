@@ -1,11 +1,32 @@
 {% extends "_layouts/base" %}
-{% block body_class %}home{% endblock %}
+{% block body_class %}view-ingredients{% endblock %}
 
 {% block sitemeta %}
 <title>{{ "MavenShake - No-nonsense Nutrition"|t }}</title>
 <meta name="description" content="{{ "The example templates for Craft Commerce"|t }}">
 {% endblock %}
 
-{% block main %}
+{% block body %}
+<div id="main" class="container mx-auto p-6">
+  <div class="message-main">
+    <h1 class="headline">{{ entry.headline }}</h1>
+    <p class="subhead">
+      {{ entry.subhead }}
+    </p>
+  </div>
 
+  {% for block in entry.ingredients.all() %}
+    {% if block.type == "ingredient" %}
+      <div class="container ingredient {{ block.layout }}">
+        {% for asset in block.image %}
+          <img class="ingredient__image" src="{{ asset.getUrl('w600') }}" alt="{{ asset.title }}">                               
+        {% endfor %}
+        <div class="ingredient__info">
+          <h2 class="ingredient__name">{{ block.ingredientName }}</h2>
+          <p class="ingredient__description">{{ block.description }}</p>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
 {% endblock %}
