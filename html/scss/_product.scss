@@ -1,0 +1,54 @@
+/* ==============================================
+HOMEPAGE
+============================================== */
+.view-product {
+  .product__fields {
+    display: flex;
+
+    .field {
+      &:first-child {
+        margin-right: 10px;
+      }   
+
+      &:last-child {
+        margin-left: 10px;
+      }
+
+      .quantity {
+        max-width: 80px;
+      }
+    }
+  }
+
+  .product-details {
+    align-items: center;
+    margin-top: 0;
+  }
+}
+
+
+/* ==============================================
+RESPONSIVE - TABLET
+============================================== */
+@media (min-width: $mq-md) and (max-width: $mq-lg) {
+  .product-details {
+    flex-direction: column;
+
+    &__photo {
+      width: 50%;
+      padding-top: 0;
+    }
+
+    &__info {
+      width: 100%;
+    }
+  }
+}
+
+
+/* ==============================================
+RESPONSIVE - MOBILE
+============================================== */
+@media (max-width: $mq-md) {
+
+}

@@ -92,7 +92,7 @@ SITE HEADER
   }
 }
 
-@media (min-width: $mq-md) {
+@media (min-width: $mq-lg) {
   .icon-menu {
     display: none;
   }
@@ -110,7 +110,7 @@ RESPONSIVE - TABLET
 /* ==============================================
 RESPONSIVE - MOBILE
 ============================================== */
-@media (max-width: $mq-md) {
+@media (max-width: $mq-lg) {
   .site-header {
     padding: 15px 20px;
     
