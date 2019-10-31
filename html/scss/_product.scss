@@ -2,26 +2,71 @@
 HOMEPAGE
 ============================================== */
 .view-product {
-  .product__fields {
-    display: flex;
-
-    .field {
-      &:first-child {
-        margin-right: 10px;
-      }   
-
-      &:last-child {
-        margin-left: 10px;
+  .product-details {
+    &__info {
+      h1 {
+        font-family: $font-body;
+        font-weight: 700;
       }
+    }
 
-      .quantity {
-        max-width: 80px;
+    hr {
+      display: none;
+      margin: 20px 0;
+    }
+  }
+
+  .product {
+    &__main-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__fields {
+      display: flex;
+  
+      .field {
+        &:first-child {
+          margin-right: 10px;
+        }   
+  
+        &:last-child {
+          margin-left: 10px;
+        }
+  
+        .quantity {
+          max-width: 80px;
+        }
+      }
+  
+      h5 {
+        font-family: $font-body;
+        font-weight: 700;
+      }
+    }
+
+    &__photos {
+      display: flex;
+    }
+
+    &__photo {
+      width: 100px;
+    }
+
+    &__nostock {
+      background-color: $color-error-light;
+      border: 1px solid darken($color-error-light, 6%);
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+
+      p {
+        margin-bottom: 0;
       }
     }
   }
 
   .product-details {
-    align-items: center;
     margin-top: 0;
   }
 }
@@ -32,15 +77,39 @@ RESPONSIVE - TABLET
 ============================================== */
 @media (min-width: $mq-md) and (max-width: $mq-lg) {
   .product-details {
+    padding-top: 0;
     flex-direction: column;
 
     &__photo {
       width: 50%;
+      margin: 0 auto;
       padding-top: 0;
     }
 
     &__info {
       width: 100%;
+      margin: 0;
+      padding-top: 0;
+
+      h1 {
+        text-align: center;
+      }
+    }
+  }
+
+  .product {
+    &__main-info {
+      flex-direction: column-reverse !important;
+    }
+  }
+
+  .add-to-cart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    .buttons {
+      margin-left: 20px;
     }
   }
 }
@@ -50,5 +119,61 @@ RESPONSIVE - TABLET
 RESPONSIVE - MOBILE
 ============================================== */
 @media (max-width: $mq-md) {
+  .product-details {
+    padding: 20px 20px 0 20px;
+    flex-direction: column;
 
+    &__photo {
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 0;
+    }
+
+    &__info {
+      width: 100%;
+      margin: 0;
+      padding-top: 0;
+      padding: 10px 20px;
+      background: rgba(white, .4);
+      border-radius: 6px;
+      border-top: 1px solid rgba(white, .75);
+      box-shadow: 0 20px 20px -5px rgba(black, .15);
+
+      h1 {
+        text-align: center;
+      }
+    }
+
+    hr {
+      display: block !important;
+    }
+  }
+
+  .product {
+    &__intro {
+      p {
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &__fields {
+      justify-content: center;
+
+      .field {
+        &--variant {
+          flex: 1 0 auto;
+        }
+      }
+
+      select {
+        width: 100%;
+      }
+    }
+
+    &__main-info {
+      flex-direction: column-reverse !important;
+    }
+  }
 }

@@ -4,24 +4,26 @@ BUTTONS
 .button {
   display: inline-block;
   padding: 8px 30px;
-  border: 1px solid darken($color-primary, 6%) !important;
-  border-radius: 50px;
+  margin-bottom: 20px;
+  border: 1px solid darken($color-primary, 6%);
+  border-radius: 4px;
   font-size: 18px;
   font-weight: bold;
-  text-transform: uppercase;
-  font-family: $font-headline;
+  text-decoration: none;
+  font-family: $font-body;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all .1s $ease-in-out-quad;
 
   &--primary {
-    color: white !important;
-    background-color: $color-primary !important;
+    color: white;
+    background-color: $color-primary;
   }
 
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(black, .25);
+    text-decoration: none;
+    box-shadow: 0 8px 8px -4px rgba(black, .25);
   }
 }
 
@@ -29,5 +31,15 @@ BUTTONS
   background: $color-link;
   font-weight: bold;
   font-family: helvetica, helvetica neue, arial, sans-serif;
+}
+
+/* ==============================================
+RESPONSIVE - MOBILE
+============================================== */
+@media (max-width: $mq-md) {
+  .button {
+    padding: 15px 20px;
+    width: 100%;
+  }
 }
 /* ============================================== */

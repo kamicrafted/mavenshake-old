@@ -129,10 +129,12 @@ RESPONSIVE - MOBILE
 
   .view-home {
     > .container {
-      padding: 0 0 50px;
+      padding:  0 50px;
     }
 
-    .message-main {  
+    .message-main {
+      padding-top: 50px;  
+      
       .headline {
         padding-top: 0;
         font-size: 42px;
@@ -146,6 +148,8 @@ RESPONSIVE - MOBILE
 
       .button {
         margin: 20px 0 0;
+        padding: 10px;
+        max-width: 300px;
       }
     }
 

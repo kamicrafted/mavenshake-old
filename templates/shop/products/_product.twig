@@ -1,0 +1,137 @@
+{% extends "_layouts/base" %}
+{% block body_class %}view-product{% endblock %}
+
+{% block sitemeta %}
+<title>{{ product.title }} | Mavenshake</title>
+<meta name="description" content="{{ "The example templates for Craft Commerce"|t }}">
+{% endblock %}
+
+{% block main %}
+
+{# <div class="mt-8">
+    <a href="{{ url('shop/products') }}">&larr; All products</a>
+</div> #}
+
+<div class="flex -mx-6 mt-8 product-details">
+    <div class="product-details__photo w-1/2 mx-6 p-8">
+      {% set rel = product.productPhoto.one() %}
+      {% if rel %}
+      <img src="/images/products/{{ rel.filename }}" alt="">
+      {% endif %}
+
+      <div class="product__photos">
+        {% set relatedAssets = product.productPhoto.all() %}
+        {% if relatedAssets|length %}
+          {% for rel in relatedAssets %}
+            <div class="product__photo">
+              <img src="{{ rel.getUrl('square_md') }}" alt="">
+            </div>
+          {% endfor %}
+        {% endif %} 
+      </div>
+    </div>
+    <div class="product-details__info w-1/2 mx-6 p-8">
+        <h1>{{ product.title }}</h1>
+
+        <div class="product__main-info">
+          <div class="product__intro">
+            {{ product.intro }}
+          </div>
+
+          {% if product.variants|length %}
+            <form method="POST" class="add-to-cart">
+              <input type="hidden" name="action" value="commerce/cart/update-cart">
+              <input type="hidden" name="purchasableId" value="{{ product.id }}">
+              {{ redirectInput('shop/cart') }}
+              
+              {{ csrfInput() }}
+
+              <div class="product__fields">
+                <div class="field field--variant">
+                  <h5>Supply amount</h5>
+                  <select name="purchasableId">
+                    {% for purchasable in product.variants %}
+                        <option {% if purchasable.stock <= 0 and purchasable.hasUnlimitedStock == false %}disabled {% endif %}
+                                value="{{ purchasable.id }}">
+                                {# {{ purchasable.sku }}  #}
+                                {{ purchasable.title }} {{ purchasable.salePrice|commerceCurrency(cart.currency) }}
+                        </option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="field field--quantity">
+                  <h5>Quantity</h5>
+                  {# <input type="hidden" name="qty" value="1"> #}
+                  <input class="quantity" type="number" name="qty" pattern="\d*"/ value="1">
+                </div>
+              </div>
+              <div class="buttons">
+                <input type="submit" value="{{ "Add to cart"|t }}" class="button button--primary"/>
+              </div>
+            </form>
+          {% else %}  
+            <div class="product__nostock">
+              <h5>{{ "Out of Stock"|t }}</h5>
+              <p>
+                This item is temporarily unavailable &#128542;
+              </p>
+            </div>
+          {% endif %}
+        </div>
+
+        <hr>
+
+        <div class="product__description">
+          {{ product.description }}
+        </div>
+    </div>
+
+    {% js %}
+      $('.add-to-cart').on('submit', function(e) {
+        e.preventDefault();
+        let form_data = $(this).serializeArray();
+        let current_count = parseInt($('#badge').text(), 10);
+        console.log('add to cart clicked');
+
+;        // Add the action URL to the submitted data
+        form_data['action'] = 'commerce/cart/update-cart'
+        console.log(form_data);
+        $.ajax({
+            type: 'post',
+            url: '',
+            data: form_data,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    console.log('success');
+                    console.log(response.success);
+                    $(this).hide();
+                    $(this).siblings('.success').show();
+                    $(this).parents('.hover-cart').fadeOut();
+
+                    $('#badge').text(current_count + parseInt(form_data[5].value, 10));
+                    // {{ craft.orders.number(cart.number).one().totalQty ?? 0}}
+                }
+                else {
+                    console.log('error');
+                    console.log(response.success);
+                    alert("The item couldn't be added to your cart. Please try again] and if the issue persists, please contact us.");
+                }
+            }
+        });        
+      });
+    {% endjs %}
+</div>
+{% endblock %}
+
+{% block vue %}
+{% js %}
+  new Vue({
+    el: '#main',
+    delimiters: ['${', '}'],
+    data: {
+      test: "sdfsdfsd"
+    }
+  })
+{% endjs %}
+{% endblock %}

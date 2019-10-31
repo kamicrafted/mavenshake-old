@@ -7,21 +7,36 @@ SITE HEADER
   justify-content: space-between;
   padding: 20px;
 
-  &__left {
+  &__left,
+  &__right {
     flex: 0 1 420px;
 
     a {
+      @extend .antialias;
       color: $color-text;
+      letter-spacing: 0.75px;
       text-decoration: none;
+      font-size: 16px;
+
+      &:hover {
+        color: $color-text;
+      }
     }
+  }
+
+  &__left {
+    
   }
 
   &__logo {
     flex: 0 0 auto;
+
+    img {
+      width: 220px;
+    }
   }
 
   &__right {
-    flex: 0 1 420px;
     clear: both;
 
     > nav {
@@ -32,12 +47,6 @@ SITE HEADER
       margin-left: auto;
       text-transform: uppercase;
       font-family: $font-headline;
-    }
-
-    a {
-      color: $color-text;
-      letter-spacing: 0.5px;
-      text-decoration: none;
     }
   }
 
@@ -83,12 +92,6 @@ SITE HEADER
   .menu-item {
     text-transform: uppercase;
     font-family: $font-headline;
-
-    a {
-      @extend .antialias;
-      color: $color-text;
-      letter-spacing: 0.5px;
-    }
   }
 }
 
@@ -100,16 +103,12 @@ SITE HEADER
 
 
 /* ==============================================
-RESPONSIVE - TABLET
+RESPONSIVE - MOBILE & TABLET
 ============================================== */
 @media (min-width: $mq-md) and (max-width: $mq-lg) {
   
 }
 
-
-/* ==============================================
-RESPONSIVE - MOBILE
-============================================== */
 @media (max-width: $mq-lg) {
   .site-header {
     padding: 15px 20px;

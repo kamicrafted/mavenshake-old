@@ -12,6 +12,11 @@ body {
   font-size: $base-font-size;
 }
 
+#main {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 a {
   color: $color-link;
 }
@@ -86,6 +91,18 @@ PAGE MAIN MESSAGE
   }
 }
 
+
+/* ==============================================
+RESPONSIVE - TABLET
+============================================== */
+@media (min-width: $mq-md) and (max-width: $mq-lg) {
+  
+}
+
+
+/* ==============================================
+RESPONSIVE - MOBILE
+============================================== */
 @media (max-width: $mq-md) {
   
 }

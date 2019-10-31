@@ -35,7 +35,14 @@
                     <tr class="item" {% if item.hasErrors() %}style="background-color:rgba(255, 0, 0, .1);"{% endif %}>
                         <td>
                             <div class="thumb">
-                                <img src="/images/products/{{product.productPhoto.one().filename }}" alt="{{ item.description }}" style="width: 150px;">
+                                {# <img src="/images/products/{{product.productPhoto.one().filename }}" alt="{{ item.description }}" style="width: 150px;"> #}
+                                {% set image = item.purchasable.productPhoto.first().url ?? null %}
+                                {# Fallback on product image if there is no variant image set #}
+                                {% if not image|length %}
+                                    {% set image = item.purchasable.product.productPhoto.first().url ?? null %}
+                                {% endif %}
+
+                                <img src="{{ image }}" alt="{{ item.description }}" style="width: 150px;">
                             </div>
                             {# <code>{{ item.options|json_encode }}</code> #}
                         </td>
