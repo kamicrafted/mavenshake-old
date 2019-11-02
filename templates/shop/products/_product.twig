@@ -36,11 +36,10 @@
 
     <img id="primaryImg" src="{{relatedAssets|first.getUrl() }}">
 
-    <div class="product__photos">
+    <div class="product__photos {% if relatedAssets|length > 3%}product__photos--justify{% endif %}">
         {% for rel in relatedAssets %}
-          <div class="product__photo">
-            <a href="#" class="thumbImg" data-lrgimg="{{ rel.getUrl() }}"><img src="{{ rel.getUrl('square_md') }}" alt=""></a>
-          </div>
+          <a href="#" class="product__photo {% if loop.index == 1 %}active{% endif %}" data-lrgimg="{{ rel.getUrl() }}"><img src="{{ rel.getUrl('square_md') }}" alt="">
+          </a>
         {% endfor %}
     </div>
     {% endif %} 
@@ -64,23 +63,33 @@
 
             <div class="product__fields">
               <div class="field field--variant">
-                <h5>Supply amount</h5>
-                <select name="purchasableId">
+                <h5>Amount</h5>
+                <select name="purchasableId" id="variant-selection">
                   {% for purchasable in product.variants %}
                       <option {% if purchasable.stock <= 0 and purchasable.hasUnlimitedStock == false %}disabled {% endif %}
                               value="{{ purchasable.id }}">
-                              {# {{ purchasable.sku }}  #}
                               {{ purchasable.title }} {{ purchasable.salePrice|commerceCurrency(cart.currency) }}
                       </option>
                   {% endfor %}
                 </select>
+
+                <div class="product__variants">
+                  {% for purchasable in product.variants %}
+                    <div class="product__variant {% if loop.index == 1 %} active {% endif %}" data-value="{{ purchasable.id }}">
+                      <h4>{{ purchasable.title }}</h4>
+                      {{ purchasable.salePrice|commerceCurrency(cart.currency) }}
+                    </div>
+                  {% endfor %}
+                </div>
               </div>
+
               <div class="field field--quantity">
                 <h5>Quantity</h5>
                 {# <input type="hidden" name="qty" value="1"> #}
                 <input class="quantity" type="number" name="qty" pattern="\d*"/ value="1">
               </div>
             </div>
+            
             <div class="buttons">
               <input type="submit" value="{{ "Add to cart"|t }}" class="button button--primary"/>
             </div>
@@ -103,43 +112,65 @@
   </div>
 
   {% js %}
-    $('.add-to-cart').on('submit', function(e) {
-      e.preventDefault();
-      let form_data = $(this).serializeArray();
-      let current_count = parseInt($('#badge').text(), 10);
-      console.log('add to cart clicked');
-
-;        // Add the action URL to the submitted data
-      form_data['action'] = 'commerce/cart/update-cart'
-      console.log(form_data);
-      $.ajax({
-          type: 'post',
-          url: '',
-          data: form_data,
-          dataType: 'json',
-          success: function(response) {
-              if (response.success) {
-                  console.log('success');
-                  console.log(response.success);
-                  $(this).hide();
-                  $(this).siblings('.success').show();
-                  $(this).parents('.hover-cart').fadeOut();
-
-                  $('#badge').text(current_count + parseInt(form_data[5].value, 10));
-                  // {{ craft.orders.number(cart.number).one().totalQty ?? 0}}
-              }
-              else {
-                  console.log('error');
-                  console.log(response.success);
-                  alert("The item couldn't be added to your cart. Please try again] and if the issue persists, please contact us.");
-              }
-          }
-      });        
-    });
-
     $( document ).ready(function() {
-      $(".thumbImg").click(function(){
+      $(".product__photo").click(function(event){
+        event.preventDefault();
         $("#primaryImg").attr({ "src": $(this).data('lrgimg') });
+
+        $(".product__photo").each(function () {
+          $(this).removeClass("active");
+        })
+
+        $(this).addClass("active");
+      });
+
+      $(".product__variant").click(function(event) {
+        console.log($(this));
+
+        $(".product__variant").each(function () {
+          $(this).removeClass("active");
+        })
+        $(this).addClass("active");
+
+        console.log($(this).attr('data-value'));
+
+        // set variant
+        $("#variant-selection").val($(this).attr('data-value'));
+      })
+
+      // AJAX cart
+      $('.add-to-cart').on('submit', function(e) {
+        e.preventDefault();
+        let form_data = $(this).serializeArray();
+        let current_count = parseInt($('#badge').text(), 10);
+        console.log('add to cart clicked');
+
+  ;        // Add the action URL to the submitted data
+        form_data['action'] = 'commerce/cart/update-cart'
+        console.log(form_data);
+        $.ajax({
+            type: 'post',
+            url: '',
+            data: form_data,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    console.log('success');
+                    console.log(response.success);
+                    $(this).hide();
+                    $(this).siblings('.success').show();
+                    $(this).parents('.hover-cart').fadeOut();
+
+                    $('#badge').text(current_count + parseInt(form_data[5].value, 10));
+                    // {{ craft.orders.number(cart.number).one().totalQty ?? 0}}
+                }
+                else {
+                    console.log('error');
+                    console.log(response.success);
+                    alert("The item couldn't be added to your cart. Please try again] and if the issue persists, please contact us.");
+                }
+            }
+        });        
       });
     });
   {% endjs %}

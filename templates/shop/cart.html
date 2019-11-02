@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Here’s what’s in your cart</h1>
+    <h1>Your cart</h1>
 
     {% if cart.lineItems|length %}
         <table class="cart w-full">
@@ -36,13 +36,13 @@
                         <td>
                             <div class="thumb">
                                 {# <img src="/images/products/{{product.productPhoto.one().filename }}" alt="{{ item.description }}" style="width: 150px;"> #}
-                                {% set image = item.purchasable.productPhoto.first().url ?? null %}
+                                {% set image = item.purchasable.productPhoto.first().getUrl('square_md') ?? null %}
                                 {# Fallback on product image if there is no variant image set #}
                                 {% if not image|length %}
                                     {% set image = item.purchasable.product.productPhoto.first().url ?? null %}
                                 {% endif %}
 
-                                <img src="{{ image }}" alt="{{ item.description }}" style="width: 150px;">
+                                <img class="thumb__img" src="{{ image }}" alt="{{ item.description }}" style="width: 150px;">
                             </div>
                             {# <code>{{ item.options|json_encode }}</code> #}
                         </td>
@@ -51,15 +51,13 @@
                                 <div class="product__info">
                                     <strong class="item__title">{{ item.description }}</strong>
                                     <span class="item__variant-title"> - {{ item.purchasable.title }}</span>
-                                    <span class="item__sku" style="opacity: .6;">({{ item.sku }})</span>
+                                    <p class="item__sku" style="opacity: .6;">({{ item.sku }})</p>
                                 </div>
 
                                 <input class="right" type="submit" name="lineItems[{{ item.id }}][remove]" value="Remove"/>
-                            </div>
-                            
-                            <br>                          
+                            </div>       
 
-                            Quantity:
+                            <strong class="section-label">Quantity:</strong>
                             <input type="{% if item.options.donationAmount is defined %}hidden{%else%}number{%endif%}" name="lineItems[{{ item.id }}][qty]" min="0" value="{{ item.qty }}" style="width: 60px;">
                             <span {% if item.getFirstError('qty') %}class="has-error"{% endif %}>
 
@@ -80,15 +78,13 @@
                             <input type="text" name="lineItems[{{ item.id }}][options][donationAmount]" placeholder="Donation" value="{{item.options.donationAmount}}">
                             {% endif %}
 
-                            <br><br>
-
                             {# <input type="textarea" placeholder="Add a note"
                                    size="50"
                                    name="lineItems[{{ item.id }}][note]"
                                    value="{{ item.note }}"
                                    style="height: 100px; vertical-align: top;"> #}
                             
-                            <input type="textarea" placeholder="Add a note"
+                            <input class="item__note" type="textarea" placeholder="Add a note"
                                    name="lineItems[{{ item.id }}][note]"
                                    value="{{ item.note }}"
                                    cols="40" rows="8"

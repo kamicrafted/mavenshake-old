@@ -1,0 +1,56 @@
+.view-cart {
+  .cart {
+    table {
+
+    }
+
+    thead {
+      background-color: $color-link;
+      color: white;
+
+      > tr th {
+        padding: 0 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 14px;
+
+        &:first-child {
+          border-radius: 4px 0 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 4px 0 0;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        background-color: rgba(white, .6);
+  
+        &:nth-child(even) {
+          background-color: rgba(white, .8);
+        }
+  
+        > td {
+          border-top: 1px solid rgba(black, .05);
+        }
+      }
+    }
+
+    td {
+      vertical-align: top;
+      padding: 20px;
+    }
+
+    .item {
+
+    }
+
+    .thumb {
+      &__img {
+        border-radius: 4px;
+      }
+    }
+  }
+}

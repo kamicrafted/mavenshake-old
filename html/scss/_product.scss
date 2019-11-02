@@ -1,6 +1,10 @@
 /* ==============================================
-HOMEPAGE
+PRODUCT DETAIL
 ============================================== */
+#variant-selection {
+  display: none !important;
+}
+
 .view-product {
   .product-details {
     &__info {
@@ -23,8 +27,6 @@ HOMEPAGE
     }
 
     &__fields {
-      display: flex;
-  
       .field {
         &:first-child {
           margin-right: 10px;
@@ -45,12 +47,69 @@ HOMEPAGE
       }
     }
 
+    &__variants {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__variant {
+      flex: 1 1 auto;
+      width: calc(33% - 5px);
+      margin: 0 5px;
+      padding: 10px;
+      background-color: white;
+      box-shadow: 0 8px 12px -4px rgba(black, .25);
+      border-radius: 10px;
+      text-align: center;
+      transition: all .15s $ease-out-quad;
+      cursor: pointer;
+
+      &:first-child {
+        margin-left: 0;
+      }
+      
+      &:last-child {
+        margin-right: 0;
+      }
+
+      h4 {
+        margin: 0;
+        font-family: $font-body;
+        font-weight: 700;
+        font-size: 16px;
+      }
+
+      &.active {
+        background-image: linear-gradient(to bottom,#fafafa,#f0f0f0);
+        box-shadow: inset 0 5px 5px rgba(1,0,0,.25), inset 0 0 0 4px $color-link, 0 0 0 1px #aaa;
+      }
+    }
+
     &__photos {
       display: flex;
+      margin-top: 10px;
+
+      &--justify {
+        justify-content: space-between;
+      }
     }
 
     &__photo {
       width: 100px;
+      transition: all .15s $ease-out-quad;
+      border-radius: 4px;
+      overflow: hidden;
+
+      > img {
+        display: block;
+      }
+
+      &.active {
+        position: relative;
+        z-index: 5;
+        box-shadow: 0 0 0 5px $color-link;
+      }
     }
 
     &__nostock {
@@ -68,6 +127,11 @@ HOMEPAGE
 
   .product-details {
     margin-top: 0;
+
+    &__photo > img {
+      overflow: hidden;
+      border-radius: 4px;;
+    }
   }
 }
 
@@ -75,7 +139,7 @@ HOMEPAGE
 /* ==============================================
 RESPONSIVE - TABLET
 ============================================== */
-@media (min-width: $mq-md) and (max-width: $mq-lg) {
+@media (min-width: $mq-sm) and (max-width: $mq-md) {
   .product-details {
     padding-top: 0;
     flex-direction: column;
@@ -101,6 +165,10 @@ RESPONSIVE - TABLET
     &__main-info {
       flex-direction: column-reverse !important;
     }
+  }
+
+  &__fields {
+    width: 100%;
   }
 
   .add-to-cart {
